@@ -43,7 +43,7 @@ const Sidebar = () => {
           key={channel.id}
           id={channel.id}
           avatar={channel.avatar}
-          name={channel.roomName}
+          name={channel.name}
         />
       ))}
     </div>
