@@ -12,9 +12,9 @@
     height: 20%;
     display: block;
     background: #fff;
-    boder-radius: 10px;
+    border-radius: 10px;
     border-top-left-radius: 0px;
-    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
     left: -12px;
     position: absolute;
     transition: var(--transition);
