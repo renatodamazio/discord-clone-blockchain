@@ -4,10 +4,13 @@
     width: 100%;
     overflow-y: auto;
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .messageContainer {
     padding: 20px;
     padding-bottom: 100px;
     padding-top: 30px;
+    flex-grow: 1;
 }
