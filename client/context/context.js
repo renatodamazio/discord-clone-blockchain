@@ -6,6 +6,8 @@ export const DiscordContext = createContext();
 
 const gun = Gun(["https://discord-gun-node-dap.herokuapp.com/"]);
 
+const initialState = { messages: [] };
+
 const reducer = (state, action) => {
   try {
     if (action.type === "clear") return { messages: [] };
@@ -16,11 +18,47 @@ const reducer = (state, action) => {
   }
 };
 
-useEffect(() => {
-  checkIfWalletIsConnected();
-}, []);
+export const createUserAccount = async () => {
+  if (!window.ethereum) return;
 
-const createUserAccount = async () => {};
+  try {
+    const data = {
+      userAddress,
+    };
+
+    try {
+      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/createuser`, {
+        method: "POST",
+        headers: {
+          "Content-type: ": "application/json",
+        },
+
+        body: JSON.stringify(data),
+      });
+    } catch (error) {}
+  } catch (error) {
+    console.error(error);
+  }
+
+  try {
+    const data = {
+      userAddress,
+    };
+
+    try {
+      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/createdm`, {
+        method: "POST",
+        headers: {
+          "Content-type: ": "application/json",
+        },
+
+        body: JSON.stringify(data),
+      });
+    } catch (error) {}
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 export const DiscordProvider = ({ children }) => {
   const router = useRouter();
@@ -47,6 +85,10 @@ export const DiscordProvider = ({ children }) => {
     }
   };
 
+  useEffect(() => {
+    checkIfWalletIsConnected();
+  }, []);
+
   const connectWallet = async () => {
     if (!window.ethereum) return;
     try {
@@ -64,6 +106,21 @@ export const DiscordProvider = ({ children }) => {
   };
 
   return (
-    <DiscordContext.Provider value={{}}>{children}</DiscordContext.Provider>
+    <DiscordContext.Provider
+      value={{
+        currentAccount,
+        roomName,
+        setRoomName,
+        placeholder,
+        messageText,
+        setMessageText,
+        state,
+        gun,
+        connectWallet,
+        currentUser,
+      }}
+    >
+      {children}
+    </DiscordContext.Provider>
   );
 };

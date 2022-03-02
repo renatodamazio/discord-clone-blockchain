@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import { DiscordContext } from "../context/context";
+
 import inbox from "../public/assets/icons/inbox.svg";
 import phone from "../public/assets/icons/phone.svg";
 import help from "../public/assets/icons/help.svg";
@@ -10,8 +13,6 @@ import personPlus from "../public/assets/icons/person-plus.svg";
 import ethLogo from "../public/assets/eth.png";
 import Image from "next/image";
 
-import { useState } from "react";
-
 import styles from "../styles/ChatHeader.module.css";
 
 const dummyAccount = "0xE03ea0325ac1FFe9F7E4987C346688a66AdF087b";
@@ -20,8 +21,9 @@ const leftIcons = [phone, video, pin, personPlus];
 const rightIcons = [inbox, help];
 
 export default function ChatHeader() {
-  const [currentAccount, setCurrentAccount] = useState(dummyAccount);
-  const connectWallet = () => {};
+  const { roomName, currentAccount, connectWallet } =
+    useContext(DiscordContext);
+
   return (
     <div className={styles.chatHeader}>
       <div className={styles.roomNameContainer}>
@@ -33,7 +35,7 @@ export default function ChatHeader() {
           alt="Icon"
         />
         <h3 className={styles.title}>
-          Room name
+          {roomName}
           <div className={`${styles.chartHeaderStatus}`}>
             <i className="online" />
           </div>
@@ -58,11 +60,11 @@ export default function ChatHeader() {
           </div>
         ))}
       </div>
-        <input
-          type="search"
-          placeholder="Search"
-          style={{ maxWidth: "200px", marginRight: "8px" }}
-        />
+      <input
+        type="search"
+        placeholder="Search"
+        style={{ maxWidth: "200px", marginRight: "8px" }}
+      />
 
       <div className={styles.headerIconsContainer}>
         {rightIcons.map((icon) => (
