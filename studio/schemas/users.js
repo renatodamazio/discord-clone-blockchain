@@ -15,7 +15,7 @@ export const userSchema = {
         },
         {
             name: "profileImage",
-            type: "string",
+            type: "image",
             title: "Profile Image"
         }
     ]

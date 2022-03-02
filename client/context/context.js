@@ -18,24 +18,26 @@ const reducer = (state, action) => {
   }
 };
 
-export const createUserAccount = async () => {
+export const createUserAccount = async (userAddress = currentAccount) => {
   if (!window.ethereum) return;
 
   try {
     const data = {
-      userAddress,
+      userAddress: userAddress,
     };
 
     try {
-      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/createuser`, {
+      await fetch(`${process.env.NEXT_PUBLIC_API}/createuser`, {
         method: "POST",
         headers: {
-          "Content-type: ": "application/json",
+          "Content-type": "application/json",
         },
 
         body: JSON.stringify(data),
-      });
-    } catch (error) {}
+      })
+    } catch (error) {
+      console.log(error);
+    }
   } catch (error) {
     console.error(error);
   }

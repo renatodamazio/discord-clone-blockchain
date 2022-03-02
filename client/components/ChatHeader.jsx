@@ -54,8 +54,8 @@ export default function ChatHeader() {
       )}
 
       <div className={styles.headerIconsContainer}>
-        {leftIcons.map((icon) => (
-          <div className={styles.headerItem}>
+        {leftIcons.map((icon, index) => (
+          <div className={styles.headerItem} key={index}>
             <Image height={25} width={25} src={icon} className={styles.svg} />
           </div>
         ))}
@@ -67,8 +67,8 @@ export default function ChatHeader() {
       />
 
       <div className={styles.headerIconsContainer}>
-        {rightIcons.map((icon) => (
-          <div className={styles.headerItem}>
+        {rightIcons.map((icon, index) => (
+          <div className={styles.headerItem} key={index}>
             <Image height={25} width={25} src={icon} className={styles.svg} />
           </div>
         ))}

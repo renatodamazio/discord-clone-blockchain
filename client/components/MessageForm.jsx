@@ -24,8 +24,8 @@ export default function MessageForm() {
         
         <input type="text" className={styles.chatInput} />
 
-        {icons.map((icon) => (
-          <div className={styles.svgContainer}>
+        {icons.map((icon, index) => (
+          <div className={styles.svgContainer} key={index}>
             <Image width={25} height={25} className={styles.svg} src={icon} />
           </div>
         ))}

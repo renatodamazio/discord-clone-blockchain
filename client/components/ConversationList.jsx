@@ -70,7 +70,7 @@ export default function ConversationList() {
         <div className={styles.dmTitle}>DIRECT MESSAGES</div>
         {dms.map((dm) => (
           <DmCard
-            key={dm.key}
+            key={dm.id}
             name={dm.name}
             id={dm.id}
             status="online"
