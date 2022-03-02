@@ -2,7 +2,7 @@
     height: 100%;
     overflow-y: auto;
     position: relative;
-    background: var(--semi-deep-grey);
+    background: #2f3136;
 }
 
 .conversationsContainer {
@@ -31,7 +31,7 @@
 }
 
 .elementsContainer:hover {
-    background: var(--hover-light-grey-color);
+    background: #3b3d43;
 }
 
 .svgContainer {
