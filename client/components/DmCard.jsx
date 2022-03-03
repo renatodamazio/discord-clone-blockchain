@@ -19,7 +19,7 @@ export default function DmCard({ name, status, avatar, id }) {
           alt={name}
         />
         <div className={styles.dmCardStatus}>
-            <i className={status} />
+          <i className={status} />
         </div>
       </div>
       <p className={styles.dmCardName}>{name}</p>

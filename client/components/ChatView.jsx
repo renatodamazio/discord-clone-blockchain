@@ -1,17 +1,48 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
 import styles from "../styles/ChatView.module.css";
-import ChatHeader from './ChatHeader';
-import MessageForm from './MessageForm';
-
+import ChatHeader from "./ChatHeader";
+import MessageForm from "./MessageForm";
+import { useContext } from "react";
+import { DiscordContext } from "../context/context";
+import MessageCard from "./MessageCard";
 export default function ChatView() {
+  const { state } = useContext(DiscordContext);
+  const [messages, setMessages] = useState([]);
+
+  const messagesArray = () => {
+    return state.messages.filter((value, index) => {
+      const _value = JSON.stringify(value);
+
+      return (
+        index ===
+        state.messages.findIndex((obj) => {
+          return JSON.stringify(obj) === _value;
+        })
+      );
+    });
+  };
+
+  useEffect(() => {
+    const requireMessages = messagesArray();
+    setMessages(requireMessages);
+  }, [])
   return (
     <div className={styles.chatView}>
       <ChatHeader />
-        <div className={styles.messageContainer}>
-            
-        </div>
+      <div className={styles.messageContainer}>
+       
+        {messages.map((message, index) => (
+          <MessageCard
+            key={index}
+            avatar={message.avatar}
+            sender={message.sender}
+            timestamp={message.createdAt}
+            content={message.content}
+          />
+        ))}
+      </div>
 
-        <MessageForm />
+      <MessageForm />
     </div>
-  )
+  );
 }

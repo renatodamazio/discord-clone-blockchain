@@ -112,6 +112,7 @@ export const DiscordProvider = ({ children }) => {
     dispatch({ type: "clear", data: {}});
     setPlaceholder(`Message ${router.query.name}`);
     setMessageText("");
+    getMessages();
   }, [router.query]);
 
   const getMessages = () => {

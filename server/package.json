@@ -2,6 +2,7 @@
   "name": "qazi-nu-node",
   "version": "1.0.0",
   "main": "server.js",
+  "type": "module",
   "license": "MIT",
   "dependencies": {
     "cors": "^2.8.5",
