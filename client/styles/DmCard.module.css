@@ -15,7 +15,7 @@
 }
 
 .dmCard:hover {
-    background: var(--hover-light-gray-color);
+    background: var(--hover-light-grey-color);
 }
 
 .dmAvatarContainer {
