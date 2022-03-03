@@ -5,7 +5,9 @@ import { useRouter } from "next/router";
 export default function DmCard({ name, status, avatar, id }) {
   const router = useRouter();
 
-  const changeUrl = () => {};
+  const changeUrl = () => {
+    router.push(`?conversation=${id}`);
+  };
   return (
     <div className={styles.dmCard} onClick={changeUrl}>
       <div className={styles.dmAvatarContainer}>
