@@ -17,6 +17,7 @@ export default async (req, res) => {
         avatar: item.conversation.image,
         name: item.conversation.name,
         id: item.conversation.walletAddress,
+        createdAt: item.conversation.createdAt
       };
     });
 

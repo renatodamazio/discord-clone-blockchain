@@ -32,7 +32,6 @@ export default function ChatView() {
     <div className={styles.chatView}>
       <ChatHeader />
       <div className={styles.messageContainer}>
-       
         {messages.map((message, index) => (
           <MessageCard
             key={index}
