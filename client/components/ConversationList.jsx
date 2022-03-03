@@ -5,6 +5,7 @@ import styles from "../styles/ConversationList.module.css";
 import friends from "../public/assets/icons/friends.svg";
 import nitro from "../public/assets/icons/nitro.svg";
 import DmCard from "./DmCard";
+import userPictureDefault from "../public/images/user.png";
 
 export default function ConversationList() {
   const [dms, setDms] = useState([]);
@@ -59,7 +60,7 @@ export default function ConversationList() {
               status="online"
               avatar={
                 dm.avatar ||
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3OCSMFI"
+                userPictureDefault
               }
             />
           ))}

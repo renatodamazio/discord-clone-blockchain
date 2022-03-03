@@ -3,7 +3,7 @@ import { client } from "../../lib/client";
 export default async (req, res) => {
   const query = `*[_type == "users" && walletAddress=="${req.query.account}"] {
         name,
-        "avatar": image.asset->url
+        "avatar": profileImage.asset->url
       }`;
   try {
     const sanityResponse = await client.fetch(query);

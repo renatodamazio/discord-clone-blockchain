@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { DiscordContext } from "../context/context";
 import styles from "../styles/MessageForm.module.css";
 import plusField from "../public/assets/icons/plus-filled.svg";
@@ -6,6 +6,8 @@ import sticker from "../public/assets/icons/sticker.svg";
 import smiley from "../public/assets/icons/smiley.svg";
 import gift from "../public/assets/icons/gift.svg";
 import gif from "../public/assets/icons/gif.svg";
+import userPictureDefault from "../public/images/user.png";
+
 import Image from "next/image";
 
 const icons = [gift, gif, sticker, smiley];
@@ -21,6 +23,10 @@ export default function MessageForm() {
     currentUser,
   } = useContext(DiscordContext);
 
+  useEffect(() => {
+    console.log(currentUser);
+  }, []);
+
   const sendMessage = (event) => {
     event.preventDefault();
 
@@ -30,9 +36,7 @@ export default function MessageForm() {
 
     const newMessage = {
       sender: currentUser.name,
-      avatar: currentUser.avatar
-        ? currentUser.avatar
-        : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3OCSMFIW5fZ3vSN6yGpD-w-6SsL2_ZPA_sw&usqp=CAU",
+      avatar: currentUser.avatar ? currentUser.avatar : userPictureDefault,
       content: messageText.trim(),
       createdAt: Date().substring(4, 11),
       messageId: Date.now(),

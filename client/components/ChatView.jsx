@@ -5,6 +5,8 @@ import MessageForm from "./MessageForm";
 import { useContext } from "react";
 import { DiscordContext } from "../context/context";
 import MessageCard from "./MessageCard";
+import userPictureDefault from "../public/images/user.png";
+
 export default function ChatView() {
   const { state } = useContext(DiscordContext);
   const [messages, setMessages] = useState([]);
@@ -25,7 +27,7 @@ export default function ChatView() {
   useEffect(() => {
     const requireMessages = messagesArray();
     setMessages(requireMessages);
-  }, [])
+  }, [state])
   return (
     <div className={styles.chatView}>
       <ChatHeader />
@@ -34,7 +36,7 @@ export default function ChatView() {
         {messages.map((message, index) => (
           <MessageCard
             key={index}
-            avatar={message.avatar}
+            avatar={typeof message.avatar === "string" ? message.avatar : userPictureDefault}
             sender={message.sender}
             timestamp={message.createdAt}
             content={message.content}
