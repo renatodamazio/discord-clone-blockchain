@@ -1,8 +1,8 @@
 import createSchema from "part:@sanity/base/schema-creator";
 import schemaTypes from "all:part:@sanity/base/schema-type";
 import { userSchema } from "./users";
-import { conversationSchema } from "./conversationSchema";
+import { conversationsSchema } from "./conversationSchema";
 export default createSchema({
   name: "default",
-  types: schemaTypes.concat([userSchema, conversationSchema]),
+  types: schemaTypes.concat([userSchema, conversationsSchema]),
 });
