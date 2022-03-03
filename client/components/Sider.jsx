@@ -24,10 +24,10 @@ const Sidebar = () => {
 
   return (
     <div className={styles.wrapper}>
-      {channels.map((channel) => (
+      {channels.map((channel, index) => (
         <RoomAvatar
-          key={channel.id}
-          id={channel.id}
+          key={index}
+          id={channel.roomId}
           avatar={channel.avatar}
           name={channel.roomName}
         />

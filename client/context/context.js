@@ -34,7 +34,7 @@ export const createUserAccount = async (userAddress = currentAccount) => {
         },
 
         body: JSON.stringify(data),
-      })
+      });
     } catch (error) {
       console.log(error);
     }
@@ -90,6 +90,48 @@ export const DiscordProvider = ({ children }) => {
   useEffect(() => {
     checkIfWalletIsConnected();
   }, []);
+
+  useEffect(async () => {
+    if (!currentAccount) return;
+
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API}/getCurrentUserData?account=${currentAccount}`
+    );
+
+    const data = await response.json();
+    setCurrentUser(data);
+    try {
+    } catch (error) {
+      console.error(error);
+    }
+  }, [currentAccount]);
+
+
+  useEffect(() => {
+    setRoomName(router.query.name);
+    dispatch({ type: "clear", data: {}});
+    setPlaceholder(`Message ${router.query.name}`);
+    setMessageText("");
+  }, [router.query]);
+
+  const getMessages = () => {
+    const _name = router.query.name;
+    const _roomId = router.query.id;
+    const messagesRef = gun.get(_name);
+
+    messagesRef.map().once(message => {
+      dispatch({
+        type: "add",
+        data: {
+          sender: message.sender,
+          content: message.content,
+          avatar: message.avatar,
+          createdAt: message.createAt,
+          messageId: message.messageId
+        }
+      })
+    })
+  }
 
   const connectWallet = async () => {
     if (!window.ethereum) return;
