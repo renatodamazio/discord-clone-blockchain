@@ -35,7 +35,7 @@ export default function MessageForm() {
         : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3OCSMFIW5fZ3vSN6yGpD-w-6SsL2_ZPA_sw&usqp=CAU",
       content: messageText.trim(),
       createdAt: Date().substring(4, 11),
-      messageId: Date().now(),
+      messageId: Date.now(),
     };
 
     messagesRef.set(newMessage);

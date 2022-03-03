@@ -6,7 +6,7 @@ export default function DmCard({ name, status, avatar, id }) {
   const router = useRouter();
 
   const changeUrl = () => {
-    router.push(`?conversation=${id}`);
+    router.push(`?conversation=${id}&name=${name}`);
   };
   return (
     <div className={styles.dmCard} onClick={changeUrl}>
